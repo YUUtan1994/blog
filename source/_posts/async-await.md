@@ -212,4 +212,34 @@ async function forBugDemo() {
 }
 forBugDemo();// Uncaught SyntaxError: Unexpected identifier
 ```
+#### async await 碰上 forEach
+
+```javascript
+var getNumbers = () => {
+  return Promise.resolve([1, 2, 3])
+}
+var multi = num => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (num) {
+        resolve(num * num)
+      } else {
+        reject(new Error('num not specified'))
+      }
+    }, 1000)
+  })
+}
+async function test () {
+  var nums = await getNumbers()
+  nums.forEach(async x => {
+    var res = await multi(x)
+    console.log(res)
+  })
+}
+test()
+```
+
+在这个例子中，通过 `forEach` 遍历的将每一个数字都执行 `multi` 操作。代码执行的结果是：1 秒后，一次性输出1，4，9。这个结果和我们的预期有些区别，我们是希望每间隔 1 秒，然后依次输出 1，4，9；所以当前代码应该是并行执行了，而我们期望的应该是串行执行。
+
+问题原因：**async 函数返回的是一个promise**，而forEach是一个个回调函数，并立即执行，当执行到一个`await`关键字附近的时候，就会返回一个`promise`对象，`async`函数内部被冻结，等待`await`后面的异步表达式执行完后，再执行`async`函数内部的剩余代码。因此剧本一forEach时得到的是一堆的`promise`对象，而不是`async`函数内部的执行结果。`async`函数保证的是函数内部的`await`的顺序执行。那么也就能说明`async`在`forEach`中是有作用的，只是场景不对罢了。
 

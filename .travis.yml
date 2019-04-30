@@ -9,6 +9,7 @@ node_js:
 cache:
   directories:
     - node_modules
+    - themes/suka/node_modules/
 
 # 指定博客源码分支，因人而异。hexo博客源码托管在独立repo则不用设置此项
 branches:
@@ -17,6 +18,9 @@ branches:
 
 before_install:
   - npm install -g hexo-cli
+  - cd themes/suka
+  - npm install
+  - cd ../..
 
 # Start: Build Lifecycle
 install:

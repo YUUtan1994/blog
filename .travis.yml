@@ -19,12 +19,12 @@ branches:
 before_install:
   - npm install -g hexo-cli
   - cd themes/suka
-  - npm install
+  - npm install  --silent
   - cd ../..
 
 # Start: Build Lifecycle
 install:
-  - npm install
+  - npm install --silent
   - npm install hexo-deployer-git --save
 
 # 执行清缓存，生成网页操作

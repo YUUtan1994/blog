@@ -20,14 +20,15 @@
     "hexo-renderer-ejs": "^0.3.1",
     "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.3.1",
-    "yuque-hexo": "^1.5.0"
+    "hexo-server": "^0.3.1"
   },
   "yuqueConfig": {
     "baseUrl": "https://www.yuque.com/api/v2",
     "login": "zhangwenxin-nf3ce",
     "repo": "blog",
-    "mdNameFormat": "title",
-    "postPath": "source/_posts/yuque"
+    "mdNameFormat": "title"
+  },
+  "devDependencies": {
+    "yuque-hexo": "^1.5.0"
   }
 }

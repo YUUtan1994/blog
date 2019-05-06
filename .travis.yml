@@ -10,13 +10,16 @@ cache:
 
 branches:
   only:
-    - hexo
+    - yuque-hexo
 
 before_install:
   - npm install -g hexo-cli
   - cd themes/suka
   - npm install  --silent
   - cd ../..
+  - git config user.name "YUUtan1994"
+  - git config user.email "yuutan1994@163.com"
+  - sed -i "s/gh_token/${GH_TOKEN}/g" ./_config.yml
 
 # Start: Build Lifecycle
 install:
@@ -24,13 +27,7 @@ install:
   - npm install hexo-deployer-git --save
 
 script:
-  - hexo clean
-  - hexo generate
+  - npm run deploy
 
 after_script:
-  - git config user.name "YUUtan1994"
-  - git config user.email "yuutan1994@163.com"
-  - sed -i "s/gh_token/${GH_TOKEN}/g" ./_config.yml
-  - cat ./_config.yml
-  - hexo deploy
 # End: Build LifeCycle

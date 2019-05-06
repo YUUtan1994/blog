@@ -25,7 +25,7 @@
   "yuqueConfig": {
     "baseUrl": "https://www.yuque.com/api/v2",
     "login": "zhangwenxin-nf3ce",
-    "repo": "blog",
+    "repo": "szccsm",
     "mdNameFormat": "title"
   },
   "devDependencies": {

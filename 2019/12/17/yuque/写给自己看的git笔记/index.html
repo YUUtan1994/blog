@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+<html >
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>写给自己看的git笔记 | yuutan的站点</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/blog/img/favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content="
+区域分配">
+
+<!-- Keywords -->
+<meta name="keywords" content>
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/blog/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/blog/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    
+        <link rel="stylesheet" href="/blog/css/highlight/github.min.css">
+    
+
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="yuutan的站点">
+<meta name="msapplication-starturl" content="http://YUUtan1994.github.io/blog">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="yuutan的站点">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="写给自己看的git笔记 | yuutan的站点">
+<meta property="og:site_name" content="yuutan的站点">
+
+
+
+<meta property="og:url" content="http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/">
+<meta property="og:image" content="http://YUUtan1994.github.io/blog/img/favicon.ico">
+
+<meta property="og:description" content="
+区域分配">
+
+<meta name="twitter:card" content="summary">
+
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-12-17T03:13:46.000Z">
+    <meta property="article:modified_time" content="2019-12-17T03:13:46.000Z">
+    <meta property="article:author" content="Vincent Yuu">
+    <meta property="og:article:tag" content> 
+
+
+
+
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://YUUtan1994.github.io/blog/blog/2019/12/17/yuque/写给自己看的git笔记/">
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/",
+    "@type": "BlogPosting",
+    "logo": "http://YUUtan1994.github.io/blog/img/favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/"
+    },
+    "headline": "写给自己看的git笔记 | yuutan的站点",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+    },
+    
+    "datePublished": "2019-12-17T03:13:46.000Z",
+    "dateModified": "2020-01-26T14:18:36.735Z",
+    "author": {
+        "@type": "Person",
+        "name": "Vincent Yuu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/avatar.jpeg"
+        },
+        "description": "Welcome. ようこそゆうたんのサイトへ"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "yuutan的站点",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://YUUtan1994.github.io/blog/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "
+区域分配"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/blog/">yuutan的站点</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Welcome. ようこそゆうたんのサイトへ
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/blog/" class="navbar-link">Home</a>
+    
+    
+        <a href="/blog/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=yuutan的站点&url=http://YUUtan1994.github.io/blog&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=yuutan的站点&url=http://YUUtan1994.github.io/blog&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog&title=写给自己看的git笔记" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=写给自己看的git笔记&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog&text=写给自己看的git笔记" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACO0lEQVR42u2b0W6DQAwE+f+fTl8rir3jJFVTPPcCig48SNjsrS/H4x+MQ0ghhRTyAyCPZpznnM9/3PTi92o+iivkWsgUMAXvHux87fdrYlwhV0Oeb3p17CCuXv50vy6ukEImyJQwr0ALKeQUsiq8VdHvQGlcIYWsglcQk+LcXfcWFSTk7SBTUf6t49tWi0LeCjKaRlWhLYRHt0DrPgovuWpC3gqye5FTgU8mV2daoXhCroUkwrYzVpNZmgRyKYyFXA1JCjIxrJJgTgZrq4KEXAVJFvBkkUZNfZRoQq6ETIW5Ew9EYHQJlx5MyJ2Q3Qs+SZTuSATLZVwhV0KmphFpuqdCTxpTrcAQUsgmQEqmyaaRaIIJuRIyNc9TY558ALri3jVahdwNmYynJIap8KXGq5C7IbvGEhW0dLMyETJC7oYk5n4yWalYmWxqEnIv5KT4dmKVigdayIUUEn/04Ua7yWa9cp6QayEnxTptSqLGVhLKQu6GTAv31LxMBmkSvaVYEXI1JDFBu/OJkMAPL+RaSLpgp7CViEiCIwoMIddAvsNwIgWeCg4hhXwU41lDgDajuthCClkVXyJu6dxJ4gm5FzKNtIkkNfdJM79MNiFXQtIkmDSdEmiXoKOFmJC3haTmexINyXRNyTQWvULeGrJ6gSeGfGnQw4GMfSGFPPifhUjziRZ7IYUkidMJCtKUj2bAO4q5kLeBTM3PSZI8k3R4Q52QKyBJU33SpCcCAzW6hFwJ+clDSCGFFPIPxxfrXdhXXDleQwAAAABJRU5ErkJggg==" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    
+    
+
+
+<div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">写给自己看的git笔记</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <span>2019-12-17</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=写给自己看的git笔记&url=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=写给自己看的git笔记&url=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/&title=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=yuutan的站点&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog/2019/12/17/yuque/写给自己看的git笔记/&text=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACO0lEQVR42u2b0W6DQAwE+f+fTl8rir3jJFVTPPcCig48SNjsrS/H4x+MQ0ghhRTyAyCPZpznnM9/3PTi92o+iivkWsgUMAXvHux87fdrYlwhV0Oeb3p17CCuXv50vy6ukEImyJQwr0ALKeQUsiq8VdHvQGlcIYWsglcQk+LcXfcWFSTk7SBTUf6t49tWi0LeCjKaRlWhLYRHt0DrPgovuWpC3gqye5FTgU8mV2daoXhCroUkwrYzVpNZmgRyKYyFXA1JCjIxrJJgTgZrq4KEXAVJFvBkkUZNfZRoQq6ETIW5Ew9EYHQJlx5MyJ2Q3Qs+SZTuSATLZVwhV0KmphFpuqdCTxpTrcAQUsgmQEqmyaaRaIIJuRIyNc9TY558ALri3jVahdwNmYynJIap8KXGq5C7IbvGEhW0dLMyETJC7oYk5n4yWalYmWxqEnIv5KT4dmKVigdayIUUEn/04Ua7yWa9cp6QayEnxTptSqLGVhLKQu6GTAv31LxMBmkSvaVYEXI1JDFBu/OJkMAPL+RaSLpgp7CViEiCIwoMIddAvsNwIgWeCg4hhXwU41lDgDajuthCClkVXyJu6dxJ4gm5FzKNtIkkNfdJM79MNiFXQtIkmDSdEmiXoKOFmJC3haTmexINyXRNyTQWvULeGrJ6gSeGfGnQw4GMfSGFPPifhUjziRZ7IYUkidMJCtKUj2bAO4q5kLeBTM3PSZI8k3R4Q52QKyBJU33SpCcCAzW6hFwJ+clDSCGFFPIPxxfrXdhXXDleQwAAAABJRU5ErkJggg==" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                            <div id="post-toc">
+                                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区域分配"><span class="post-toc-number">1.</span> <span class="post-toc-text">区域分配</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本快照命令"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">基本快照命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分支-amp-解决冲突"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">分支&amp;解决冲突</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#远程"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">远程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#补丁"><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">补丁</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Debug"><span class="post-toc-number">2.0.5.</span> <span class="post-toc-text">Debug</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#管理"><span class="post-toc-number">2.0.6.</span> <span class="post-toc-text">管理</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常见知识点"><span class="post-toc-number">3.</span> <span class="post-toc-text">常见知识点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#git-merge-amp-git-rebase-区别、各自优缺点"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">git merge &amp; git rebase 区别、各自优缺点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-merge"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">git merge</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-rebase"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">git rebase</span></a></li></ol></li></ol></li></ol>
+                            </div>
+                        
+                    
+                    <article id="post-content">
+                        <p><a name="I3khZ"></a></p>
+<h1 id="区域分配"><a href="#区域分配" class="headerlink" title="区域分配"></a>区域分配<img src="https://cdn.nlark.com/yuque/0/2019/png/241091/1576552444244-b7460aab-2b4d-4da7-8f2f-ea0d52bc577a.png#align=left&amp;display=inline&amp;height=340&amp;name=image.png&amp;originHeight=340&amp;originWidth=1172&amp;size=56585&amp;status=done&amp;style=none&amp;width=1172" alt="image.png"></h1><ul>
+<li>Workspace：工作区</li>
+<li>Index / Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
+<p><a name="kZvDp"></a></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p><a name="UgGEi"></a></p>
+<h3 id="基本快照命令"><a href="#基本快照命令" class="headerlink" title="基本快照命令"></a>基本快照命令</h3><ul>
+<li>git add</li>
+<li>git status</li>
+<li>git diff </li>
+<li>git reset </li>
+<li>git commit</li>
+<li>git rm</li>
+<li>git mv （git rm / git mv 与普通Linux命令不同的是，执行之后会自动add到stage区）<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止追踪指定文件，但该文件会保留在工作区</span></span><br><span class="line">git rm --cached [file]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a name="H1Txa"></a></p>
+<h3 id="分支-amp-解决冲突"><a href="#分支-amp-解决冲突" class="headerlink" title="分支&amp;解决冲突"></a>分支&amp;解决冲突</h3><ul>
+<li>git branch</li>
+<li>git checkout</li>
+<li>git merge</li>
+<li>git mergetool</li>
+<li>git stash </li>
+<li>git stash apply / drop  取栈顶 / 丢栈顶</li>
+<li><p>git tag<br><a name="PdU6u"></a></p>
+<h3 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h3><p>FETCH_HEAD: 远程的最新一次commit;</p>
+</li>
+<li><p>git fetch</p>
+</li>
+<li>git pull  ( === git fetch &amp;&amp; git merge FETCH_HEAD)</li>
+<li>git push </li>
+<li><p>git remote<br><a name="vGE5a"></a></p>
+<h3 id="补丁"><a href="#补丁" class="headerlink" title="补丁"></a>补丁</h3></li>
+<li><p>git apply</p>
+</li>
+</ul>
+<p>用法：<br>生成补丁： git diff &gt; myPatch.patch<br>应用补丁： git:(feature-branch) git  apply  myPatch.patch<br>根据 patch 文件内的信息，在现有文件中添加或删除内容。(修改内容仍放在工作区)<br>应用场景：在比较敏感、无共享内网的工作环境下，本地修改生成补丁之后用u盘传给别人（true story）</p>
+<ul>
+<li>git cherry-pick：可以选择某一个分支中的一个或几个commit(s)来进行操作</li>
+</ul>
+<p>用法：<br>git cherry-pick &lt;commit_id&gt;<br>git cherry-pick <start-commit-id>..<end-commit-id> (批量区间commit)<br>注意：当执行完 cherry-pick 以后，将会生成一个新的提交；这个新的提交的哈希值和原来的不同，但标识名一样；</end-commit-id></start-commit-id></p>
+<ul>
+<li>git revert ： 与reset相似，撤销某次commit的内容，但是是反向commit而不是回退版本，将会向前commit；</li>
+</ul>
+<p>批量撤销用法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ..为前开后闭区间</span></span><br><span class="line">git revert --no-commit f7742cd..551c408</span><br><span class="line"><span class="comment"># 撤销从master之前第5个提交到之前第3个提交的变化</span></span><br><span class="line">git revert -n master~5..master~2</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>git rebase :中文解释为变基，就是修改分支上的基线，把分叉的提交历史“整理”成一条直线，看上去更直观。最大的优点就是整理好commit信息，使得更加整洁，缺点就是跟踪性不好；<br><a name="t5du2"></a></p>
+<h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3></li>
+<li><p>git bisect ：使用二分法来定位哪次commit出现了问题，适用于多个文件；</p>
+</li>
+<li><p>git blame : 查看某文件每行的commit 快照，适用于单文件；<br><a name="cObMD"></a></p>
+<h3 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h3></li>
+<li><p>git reflog：查看历史操作记录，对于撤销操作很有用处；</p>
+</li>
+<li>git clean：清除所有untracked文件，不经常用；</li>
+<li>git gc ： 清除不必要的文件和压缩优化仓库信息，用次来节约内存，不经常用；</li>
+<li>git fsck： 验证数据库中对象的连通性和有效性，可以用来找回丢失的commit、恢复被删除的数据；</li>
+</ul>
+<p><a name="TZPEd"></a></p>
+<h1 id="常见知识点"><a href="#常见知识点" class="headerlink" title="常见知识点"></a>常见知识点</h1><p><a name="eY2mB"></a></p>
+<h2 id="git-merge-amp-git-rebase-区别、各自优缺点"><a href="#git-merge-amp-git-rebase-区别、各自优缺点" class="headerlink" title="git merge &amp; git rebase 区别、各自优缺点"></a>git merge &amp; git rebase 区别、各自优缺点</h2><p><a name="vgxSz"></a></p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/241091/1576745517697-c2f40768-2379-44a0-bc37-79851451f863.png#align=left&amp;display=inline&amp;height=428&amp;name=image.png&amp;originHeight=428&amp;originWidth=784&amp;size=27159&amp;status=done&amp;style=none&amp;width=784" alt="image.png">优点</p>
+<ul>
+<li>简单而又熟悉</li>
+<li>保留完整的历史和时间顺序</li>
+<li>维持分支的上下文</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>提交历史记录可能会被许多合并提交污染</li>
+<li><p>使用 <code>git bisect</code> 进行调试会变得更难<br><a name="soONM"></a></p>
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>Rebase 是将更改从一个分支集成到另一个分支的另一种方法。 Rebase 将所有更改压缩为单个“补丁”。然后它将补丁集成到目标分支上。<br>与 merge 不同，重定位使历史变得扁平，因为它将完成的工作从一个分支转移到另一个分支。在这个过程中，不需要的历史记录被消除。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/241091/1576745732550-62a6934b-0505-4572-bc8e-d0537435bd1d.png#align=left&amp;display=inline&amp;height=456&amp;name=image.png&amp;originHeight=456&amp;originWidth=774&amp;size=22509&amp;status=done&amp;style=none&amp;width=774" alt="image.png"><br>优点</p>
+</li>
+<li><p>简化可能复杂的历史记录</p>
+</li>
+<li>操作单个提交很容易（例如还原它们）</li>
+<li>避免分支频繁合并提交，频繁回购。</li>
+<li>通过将它们作为单个提交来清理中间提交，这对DevOps团队很有帮助</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>将该功能分解为少量提交可以隐藏上下文</li>
+<li>在团队合作时，重新定位公共存储库可能会很危险</li>
+<li>可能带来更多的工作：使用rebase 来保持您的 feature 分支始终更新</li>
+<li>使用远程分支 Rebase 需要强制推送。人们面临的最大问题是他们强制推送，但还没有设置 git push 默认值。这会导致对本地和远程上具有相同名称的所有分支进行更新，这是非常可怕的，并且处理起来非常糟糕。</li>
+</ul>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+        var dateUpdate = Date.parse("2020-01-26");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2019-12-17T03:13:46.000Z" itemprop="datePublished">2019-12-17</time>
+
+    , Updated at&nbsp;<time datetime="2020-01-26T14:18:36.735Z" itemprop="dateModified">2020-01-26</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                
+<div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">TC39新提案——WeakReferences(弱引用)</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">vue-cli3编译时构建优化实践</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://YUUtan1994.github.io/blog">yuutan的站点</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+        
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
+</footer>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightSince = 2019;
+        if (copyrightSince === copyrightNow) {
+            copyrightContent.textContent = copyrightNow
+        } else {
+            copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow
+        }
+    
+
+
+
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
+</html>

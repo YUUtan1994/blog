@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+<html >
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>yuutan的站点</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/blog/img/favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content>
+
+<!-- Keywords -->
+<meta name="keywords" content>
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/blog/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/blog/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="yuutan的站点">
+<meta name="msapplication-starturl" content="http://YUUtan1994.github.io/blog">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="yuutan的站点">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="yuutan的站点">
+<meta property="og:site_name" content="yuutan的站点">
+
+
+
+<meta property="og:url" content="http://YUUtan1994.github.io/blog/">
+<meta property="og:image" content="http://YUUtan1994.github.io/blog/img/favicon.ico">
+
+<meta property="og:description" content>
+
+<meta name="twitter:card" content="summary">
+
+
+    <meta property="og:type" content="blog">
+
+
+
+
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://YUUtan1994.github.io/blog/blog/">
+
+    <!-- ### Structured Data ### -->
+    
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Blog",
+    "author": {
+        "@type": "Person",
+        "name": "Vincent Yuu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/avatar.jpeg"
+        },
+        "description": "Welcome. ようこそゆうたんのサイトへ"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "yuutan的站点",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+        }
+    },
+    "url": "http://YUUtan1994.github.io/blog",
+    "logo": "http://YUUtan1994.github.io/blog/img/favicon.ico",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://YUUtan1994.github.io/blog"
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://YUUtan1994.github.io/blog/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": ""
+}
+</script>
+
+
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/blog/">yuutan的站点</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Welcome. ようこそゆうたんのサイトへ
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/blog/" class="navbar-link">Home</a>
+    
+    
+        <a href="/blog/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=yuutan的站点&url=http://YUUtan1994.github.io/blog&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=yuutan的站点&url=http://YUUtan1994.github.io/blog&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog&title=" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog&text=" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABhElEQVR42u3ayw6DMAxEUf7/p9tVNwjPTCgCG102rfoIB8mKHSfbp8G1gQABYgRiE9f++/1/fu8Pb2DGBdEbUQ1S3fRowBUciBmIo4A8+o1DLo0LYiRCTTZVUIJ4P6IKzmoSAvEORDXofrCkeLk8i4K4HeEK3bOvl1bbIG5D2EWrKWarxHXpqhzErYjVxKMWPUkhFM2YIB5FVMGmgtIF56nJCkQbhEs86WTmipm4SQLicYQaQDVCVNJygQ2iN0I10KuklTTZogIJREuECzTXNHVI+TAgWiJcYLoitoKq5iqI3gi36ZZusCSNsyiLgngc4SYp9ZlbLLsiGMQshFocrxQ9slgG0RKhJix1o7QQkg8DYgRiZXF7aRYF0QaxBZdqpquNmKUuP4g2iH+apSk6aqaCaINIDwonG2zusBiIOQi7ORJOYFFTHcQYRLJBnxz6WTn8BWIm4szBDVcAgZiPWG2iq8IIxBxEmsCSZqo7QAaiPyJNPKsI23gD0RLx5AUCBIjWiC/KvlnZP33KxwAAAABJRU5ErkJggg==" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            <div class="container">
+    <div class="main-container">
+        <main>
+            <div class="post-stream-container">
+                <!-- # Post List # -->
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2020/01/25/yuque/TypeScript初学笔记/">TypeScript初学笔记</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        
+初言新年快乐。现在疫情还是比较严重，于是在...
+    <a href="/blog/2020/01/25/yuque/TypeScript初学笔记/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2020-01-25</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/">TC39新提案——WeakReferences(弱引用)</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        目前提案进度：stage 3。
+
+    <a href="/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2020-01-03</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/12/17/yuque/写给自己看的git笔记/">写给自己看的git笔记</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        
+区域分配
+    <a href="/blog/2019/12/17/yuque/写给自己看的git笔记/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-12-17</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/">vue-cli3编译时构建优化实践</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        最近研究并借鉴了一下网上对webpack优化的一些措施，也对自己所负责的项目进行了优化。项目背景：单页spa应用，大多数运行在electron端上，大概有150+页面，曾经从vue-cli2移植到vue-cli3，代码体...
+    <a href="/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-12-07</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/11/07/yuque/记一次uglifyJsPlugin报错的问题/">记一次uglifyJsPlugin报错的问题</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        这次碰到的问题十分简单，在前端项目使用uglifyJS压缩代码的时候报出错误：（webpack 4.x ，vue-cli3）
+
+    <a href="/blog/2019/11/07/yuque/记一次uglifyJsPlugin报错的问题/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-11-07</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/09/24/yuque/记一次浏览器自动填充保存后密码问题/">记一次浏览器自动填充保存后密码问题</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        
+问题描述接手一个前端历史项目的...
+    <a href="/blog/2019/09/24/yuque/记一次浏览器自动填充保存后密码问题/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-09-24</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/05/22/yuque/web字体实践方案/">web字体实践方案</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        Web字体是一种CSS特性，允许您指定在访问时随您的网站一起下载的字体文件，这意味着任何支持Web字体的浏览器都可以使用您指定的字体。引入方法很简单，在css文件中声明@...
+    <a href="/blog/2019/05/22/yuque/web字体实践方案/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-05-22</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/05/05/yuque/hello world/">hello world</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        这是第一篇从语雀发布的文章。
+    <a href="/blog/2019/05/05/yuque/hello world/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-05-05</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+                    
+                        
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+<article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column column-thumbnail col-4 col-lg-12">
+                    <a href="/blog/2019/01/21/async-await/">
+                        <div class="post-thumbnail lazyload" data-bg="url(https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png)"></div>
+                    </a>
+                </div>
+                <div class="column column-body col-8 col-lg-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="/blog/2019/01/21/async-await/">async await初步理解</a></h2>
+
+
+<p class="mb-0 card-body">
+    
+        Promise和generator的语法糖async-await 是建立在 promise机制之上的，并不能取代其地位。
+    <a href="/blog/2019/01/21/async-await/">Read more</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <time>2019-01-21</time>
+        
+            <span class="suka-devide-dot"></span>
+            <a class="category-link" href="/blog/categories/学习笔记/">学习笔记</a>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                    
+                
+            </div>
+        </main>
+        
+
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://YUUtan1994.github.io/blog">yuutan的站点</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+        
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
+</footer>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightSince = 2019;
+        if (copyrightSince === copyrightNow) {
+            copyrightContent.textContent = copyrightNow
+        } else {
+            copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow
+        }
+    
+
+
+
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
+</html>

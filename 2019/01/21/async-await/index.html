@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+<html >
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>async await初步理解 | yuutan的站点</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/blog/img/favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content="Promise和generator的语法糖async-await 是建立在 promise机制之上的，并不能取代其地位。">
+
+<!-- Keywords -->
+<meta name="keywords" content=", ES2015, async-await">
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/blog/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/blog/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    
+        <link rel="stylesheet" href="/blog/css/highlight/github.min.css">
+    
+
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="yuutan的站点">
+<meta name="msapplication-starturl" content="http://YUUtan1994.github.io/blog">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="yuutan的站点">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="async await初步理解 | yuutan的站点">
+<meta property="og:site_name" content="yuutan的站点">
+
+
+
+<meta property="og:url" content="http://YUUtan1994.github.io/blog/2019/01/21/async-await/">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png">
+
+<meta property="og:description" content="Promise和generator的语法糖async-await 是建立在 promise机制之上的，并不能取代其地位。">
+
+<meta name="twitter:card" content="summary_large_image">
+
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-01-21T00:00:00.000Z">
+    <meta property="article:modified_time" content="2019-01-21T00:00:00.000Z">
+    <meta property="article:author" content="Vincent Yuu">
+    <meta property="og:article:tag" content=", ES2015, async-await"> 
+
+
+
+
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://YUUtan1994.github.io/blog/blog/2019/01/21/async-await/">
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://YUUtan1994.github.io/blog/2019/01/21/async-await/",
+    "@type": "BlogPosting",
+    "logo": "http://YUUtan1994.github.io/blog/img/favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://YUUtan1994.github.io/blog/2019/01/21/async-await/"
+    },
+    "headline": "async await初步理解 | yuutan的站点",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png"
+    },
+    
+    "datePublished": "2019-01-21T00:00:00.000Z",
+    "dateModified": "2020-01-26T14:17:56.531Z",
+    "author": {
+        "@type": "Person",
+        "name": "Vincent Yuu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/avatar.jpeg"
+        },
+        "description": "Welcome. ようこそゆうたんのサイトへ"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "yuutan的站点",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://YUUtan1994.github.io/blog/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": ", ES2015, async-await",
+    "description": "Promise和generator的语法糖async-await 是建立在 promise机制之上的，并不能取代其地位。"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/blog/">yuutan的站点</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Welcome. ようこそゆうたんのサイトへ
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/blog/" class="navbar-link">Home</a>
+    
+    
+        <a href="/blog/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=yuutan的站点&url=http://YUUtan1994.github.io/blog&pic=https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=yuutan的站点&url=http://YUUtan1994.github.io/blog&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog&title=async await初步理解" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=async await初步理解&summary=&pics=https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png&url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog&text=async await初步理解" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB0klEQVR42u3aQXLDMAxDUd//0u0244oEWGUhw9+bdprUeplhJBHy9XPgdYECBQrUAnU11+d77u+/v6buY40DKga1LLrb36fwFVqNAyoLtSpMB7MapENX44B6F6p6vUM6HxLUe1HdIjtd1EG9B1UtlFUxK6Ba4Ld2CaCOR7nFvPvza90MqKNRMnRoNv6rJtXdDG6lLqCORnWF2E2U5aJahCEOGFQGatpEVv/XDazCElBZKAehbu6EY9ZkDCoKpRZRtflTWGc8UDkotciqpnLnywEqF1WFGU4Q6y7OcixQUai2AIvfu0nWWYj/fAlARaAmE+ck+FAfUDajoGJQ6mBxWvzOhAsqC7XahHVBxKSxUEE/qGzUzsMS3YJcfehxOgzq8aguqHcPGd2DJVBZKNU8dAWtCt4N3kBloZwA1g1CnMCjvS+oGNTkMLKbMKvBVcMKKhPlNp+Th0udZgJUNkpt+KdNhBvyg8pCTQPXDuQ2q3JBBvVolPWgcfNQoFPgKjgDlYeaHgiVNxUbPhmogIpCdYXpNAO7mz5Q70NNQlW1eH+t0EE9FvWfQwAH+5VTLFDHorpwQ4Wt7kH2OOAA9ViUU5y7D+A4MFAZqJMuUKBAgfq4fgHN8fGx+5xF7gAAAABJRU5ErkJggg==" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    
+    
+
+
+<div class="post-container">
+    <div id="post-card" class="card">
+        
+            <!-- # Post Thumbnail # -->
+            <div class="card-image" style="background-image: url('https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png');"></div>
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">async await初步理解</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <span>2019-01-21</span>
+        
+            <span class="suka-devide-dot"></span>
+            <a class="category-link" href="/blog/categories/学习笔记/">学习笔记</a>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=async await初步理解&url=http://YUUtan1994.github.io/blog/2019/01/21/async-await/&pic=https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=async await初步理解&url=http://YUUtan1994.github.io/blog/2019/01/21/async-await/&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog/2019/01/21/async-await/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog/2019/01/21/async-await/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog/2019/01/21/async-await/&title=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=yuutan的站点&summary=&pics=https://cdn-images-1.medium.com/max/2400/1*2Nco5zYP_Xv-5-FgL6kCuw.png&url=http://YUUtan1994.github.io/blog/2019/01/21/async-await/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog/2019/01/21/async-await/&text=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB0klEQVR42u3aQXLDMAxDUd//0u0244oEWGUhw9+bdprUeplhJBHy9XPgdYECBQrUAnU11+d77u+/v6buY40DKga1LLrb36fwFVqNAyoLtSpMB7MapENX44B6F6p6vUM6HxLUe1HdIjtd1EG9B1UtlFUxK6Ba4Ld2CaCOR7nFvPvza90MqKNRMnRoNv6rJtXdDG6lLqCORnWF2E2U5aJahCEOGFQGatpEVv/XDazCElBZKAehbu6EY9ZkDCoKpRZRtflTWGc8UDkotciqpnLnywEqF1WFGU4Q6y7OcixQUai2AIvfu0nWWYj/fAlARaAmE+ck+FAfUDajoGJQ6mBxWvzOhAsqC7XahHVBxKSxUEE/qGzUzsMS3YJcfehxOgzq8aguqHcPGd2DJVBZKNU8dAWtCt4N3kBloZwA1g1CnMCjvS+oGNTkMLKbMKvBVcMKKhPlNp+Th0udZgJUNkpt+KdNhBvyg8pCTQPXDuQ2q3JBBvVolPWgcfNQoFPgKjgDlYeaHgiVNxUbPhmogIpCdYXpNAO7mz5Q70NNQlW1eH+t0EE9FvWfQwAH+5VTLFDHorpwQ4Wt7kH2OOAA9ViUU5y7D+A4MFAZqJMuUKBAgfq4fgHN8fGx+5xF7gAAAABJRU5ErkJggg==" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                            <div id="post-toc">
+                                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Promise和generator的语法糖"><span class="post-toc-number">1.</span> <span class="post-toc-text">Promise和generator的语法糖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基本语法"><span class="post-toc-number">2.</span> <span class="post-toc-text">基本语法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基本概念"><span class="post-toc-number">3.</span> <span class="post-toc-text">基本概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#实例"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">实例</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#错误处理"><span class="post-toc-number">4.</span> <span class="post-toc-text">错误处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意并行处理"><span class="post-toc-number">5.</span> <span class="post-toc-text">注意并行处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#await-in-for-循环"><span class="post-toc-number">6.</span> <span class="post-toc-text">await in for 循环</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#async-await-碰上-forEach"><span class="post-toc-number">7.</span> <span class="post-toc-text">async await 碰上 forEach</span></a></li></ol>
+                            </div>
+                        
+                    
+                    <article id="post-content">
+                        <h4 id="Promise和generator的语法糖"><a href="#Promise和generator的语法糖" class="headerlink" title="Promise和generator的语法糖"></a><code>Promise</code>和<code>generator</code>的语法糖</h4><p>async-await 是建立在 promise机制之上的，并不能取代其地位。</p>
+<a id="more"></a>
+<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="built_in">Math</span>.random()</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo()</span><br><span class="line"><span class="comment">// 0.008326278736928927</span></span><br><span class="line"><span class="comment">// Promise &#123;&lt;resolved&gt;: undefined&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>async用来表示函数是异步的，<strong>定义的函数会返回一个promise对象</strong>，可以使用then方法添加回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo01</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo01().then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val);<span class="comment">// 123</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>await 可以理解为是 async wait 的简写。await 必须出现在 async 函数内部，不能单独使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">notAsyncFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="built_in">Math</span>.random();</span><br><span class="line">&#125;</span><br><span class="line">notAsyncFunc();<span class="comment">//Uncaught SyntaxError: Unexpected identifier</span></span><br></pre></td></tr></table></figure>
+<p>await 后面可以跟任何的JS 表达式。虽然说 await 可以等很多类型的东西，<strong>但是它最主要的意图是用来等待 Promise 对象的状态被 resolved</strong>。如果await的是 promise对象会<strong>造成异步函数停止执行并且等待 promise 的解决</strong>,如果等的是正常的表达式则立即执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">second</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(<span class="string">' enough sleep~'</span>);</span><br><span class="line">        &#125;, second);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normalFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'normalFunc'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">awaitDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> normalFunc();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'something, ~~'</span>);</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> sleep(<span class="number">2000</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result);<span class="comment">// 两秒之后会被打印出来</span></span><br><span class="line">&#125;</span><br><span class="line">awaitDemo();</span><br><span class="line"><span class="comment">// normalFunc</span></span><br><span class="line"><span class="comment">// VM4036:13 something, ~~</span></span><br><span class="line"><span class="comment">// VM4036:15  enough sleep~</span></span><br></pre></td></tr></table></figure>
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><p>举例说明啊，你有三个请求需要发生，第三个请求是依赖于第二个请求的解构第二个请求依赖于第一个请求的结果。若用 ES5实现会有3层的回调，若用Promise 实现至少需要3个then。一个是代码横向发展，另一个是纵向发展。</p>
+<p>接下来是<code>async await</code>的实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我们仍然使用 setTimeout 来模拟异步请求</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">second, param</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(param);</span><br><span class="line">        &#125;, second);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result1 = <span class="keyword">await</span> sleep(<span class="number">2000</span>, <span class="string">'req01'</span>);</span><br><span class="line">    <span class="keyword">let</span> result2 = <span class="keyword">await</span> sleep(<span class="number">1000</span>, <span class="string">'req02'</span> + result1);</span><br><span class="line">    <span class="keyword">let</span> result3 = <span class="keyword">await</span> sleep(<span class="number">500</span>, <span class="string">'req03'</span> + result2);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`</span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;result3&#125;</span></span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;result2&#125;</span></span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;result1&#125;</span></span></span><br><span class="line"><span class="string">    `</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br><span class="line"><span class="comment">//req03req02req01</span></span><br><span class="line"><span class="comment">//req02req01</span></span><br><span class="line"><span class="comment">//req01</span></span><br></pre></td></tr></table></figure>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">second</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            reject(<span class="string">'want to sleep~'</span>);</span><br><span class="line">        &#125;, second);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">errorDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">errorDemo();<span class="comment">// VM706:11 Uncaught (in promise) want to sleep~</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 为了处理Promise.reject 的情况我们应该将代码块用 try catch 包裹一下</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">errorDemoSuper</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(result);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">errorDemoSuper();<span class="comment">// want to sleep~</span></span><br><span class="line"><span class="comment">// 有了 try catch 之后我们就能够拿到 Promise.reject 回来的数据了。</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意并行处理"><a href="#注意并行处理" class="headerlink" title="注意并行处理"></a>注意并行处理</h4><p>await若是等到promise还在pending的状态时，就会停止下来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">second</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(<span class="string">'request done! '</span> + <span class="built_in">Math</span>.random());</span><br><span class="line">        &#125;, second);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bugDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'clear the loading~'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bugDemo();</span><br></pre></td></tr></table></figure>
+<p>loading 确实是等待请求都结束完才清除的。但是你认真的观察下浏览器的 timeline 请求是一个结束后再发另一个的（若观察效果请发真实的 ajax 请求）</p>
+<p>那么，正常的处理是怎样的呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">correctDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> p1 = sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">let</span> p2 = sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">let</span> p3 = sleep(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">await</span> <span class="built_in">Promise</span>.all([p1, p2, p3]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'clear the loading~'</span>);</span><br><span class="line">&#125;</span><br><span class="line">correctDemo();<span class="comment">// clear the loading~</span></span><br></pre></td></tr></table></figure>
+<h4 id="await-in-for-循环"><a href="#await-in-for-循环" class="headerlink" title="await in for 循环"></a>await in for 循环</h4><p><code>await</code>必须在<code>async</code>函数的上下文中的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正常 for 循环</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">forDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i ++) &#123;</span><br><span class="line">        <span class="keyword">await</span> arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">forDemo();<span class="comment">//正常输出</span></span><br><span class="line"><span class="comment">// 因为想要炫技把 for循环写成下面这样</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">forBugDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> item;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">forBugDemo();<span class="comment">// Uncaught SyntaxError: Unexpected identifier</span></span><br></pre></td></tr></table></figure>
+<h4 id="async-await-碰上-forEach"><a href="#async-await-碰上-forEach" class="headerlink" title="async await 碰上 forEach"></a>async await 碰上 forEach</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getNumbers = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> multi = <span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (num) &#123;</span><br><span class="line">        resolve(num * num)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'num not specified'</span>))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> nums = <span class="keyword">await</span> getNumbers()</span><br><span class="line">  nums.forEach(<span class="keyword">async</span> x =&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> res = <span class="keyword">await</span> multi(x)</span><br><span class="line">    <span class="built_in">console</span>.log(res)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，通过 <code>forEach</code> 遍历的将每一个数字都执行 <code>multi</code> 操作。代码执行的结果是：1 秒后，一次性输出1，4，9。这个结果和我们的预期有些区别，我们是希望每间隔 1 秒，然后依次输出 1，4，9；所以当前代码应该是并行执行了，而我们期望的应该是串行执行。</p>
+<p>问题原因：<strong>async 函数返回的是一个promise</strong>，而forEach是一个个回调函数，并立即执行，当执行到一个<code>await</code>关键字附近的时候，就会返回一个<code>promise</code>对象，<code>async</code>函数内部被冻结，等待<code>await</code>后面的异步表达式执行完后，再执行<code>async</code>函数内部的剩余代码。因此剧本一forEach时得到的是一堆的<code>promise</code>对象，而不是<code>async</code>函数内部的执行结果。<code>async</code>函数保证的是函数内部的<code>await</code>的顺序执行。那么也就能说明<code>async</code>在<code>forEach</code>中是有作用的，只是场景不对罢了。</p>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+        var dateUpdate = Date.parse("2020-01-26");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2019-01-21T00:00:00.000Z" itemprop="datePublished">2019-01-21</time>
+
+    , Updated at&nbsp;<time datetime="2020-01-26T14:17:56.531Z" itemprop="dateModified">2020-01-26</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+<span class="post-categories-list mt-2">
+
+
+<a class="post-categories-list-item" href='/blog/categories/学习笔记/'>学习笔记</a>
+
+</span>
+
+
+
+<span class="post-tags-list mt-2">
+
+
+<a class="post-tags-list-item" href='/blog/tags/ES2015/'>#&nbsp;ES2015</a>
+
+<a class="post-tags-list-item" href='/blog/tags/async-await/'>#&nbsp;async-await</a>
+
+</span>
+
+
+</p>
+
+                </div>
+                
+<div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/blog/2019/05/05/yuque/hello world/">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">hello world</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://YUUtan1994.github.io/blog">yuutan的站点</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+        
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
+</footer>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightSince = 2019;
+        if (copyrightSince === copyrightNow) {
+            copyrightContent.textContent = copyrightNow
+        } else {
+            copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow
+        }
+    
+
+
+
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
+</html>

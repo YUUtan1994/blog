@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+<html >
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>web字体实践方案 | yuutan的站点</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/blog/img/favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content="Web字体是一种CSS特性，允许您指定在访问时随您的网站一起下载的字体文件，这意味着任何支持Web字体的浏览器都可以使用您指定的字体。引入方法很简单，在css文件中声明@...">
+
+<!-- Keywords -->
+<meta name="keywords" content>
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/blog/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/blog/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    
+        <link rel="stylesheet" href="/blog/css/highlight/github.min.css">
+    
+
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="yuutan的站点">
+<meta name="msapplication-starturl" content="http://YUUtan1994.github.io/blog">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="yuutan的站点">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="web字体实践方案 | yuutan的站点">
+<meta property="og:site_name" content="yuutan的站点">
+
+
+
+<meta property="og:url" content="http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/">
+<meta property="og:image" content="http://YUUtan1994.github.io/blog/img/favicon.ico">
+
+<meta property="og:description" content="Web字体是一种CSS特性，允许您指定在访问时随您的网站一起下载的字体文件，这意味着任何支持Web字体的浏览器都可以使用您指定的字体。引入方法很简单，在css文件中声明@...">
+
+<meta name="twitter:card" content="summary">
+
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-05-22T06:24:36.000Z">
+    <meta property="article:modified_time" content="2019-05-22T06:24:36.000Z">
+    <meta property="article:author" content="Vincent Yuu">
+    <meta property="og:article:tag" content> 
+
+
+
+
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://YUUtan1994.github.io/blog/blog/2019/05/22/yuque/web字体实践方案/">
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/",
+    "@type": "BlogPosting",
+    "logo": "http://YUUtan1994.github.io/blog/img/favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/"
+    },
+    "headline": "web字体实践方案 | yuutan的站点",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+    },
+    
+    "datePublished": "2019-05-22T06:24:36.000Z",
+    "dateModified": "2020-01-26T14:18:36.739Z",
+    "author": {
+        "@type": "Person",
+        "name": "Vincent Yuu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/avatar.jpeg"
+        },
+        "description": "Welcome. ようこそゆうたんのサイトへ"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "yuutan的站点",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://YUUtan1994.github.io/blog/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "Web字体是一种CSS特性，允许您指定在访问时随您的网站一起下载的字体文件，这意味着任何支持Web字体的浏览器都可以使用您指定的字体。引入方法很简单，在css文件中声明@..."
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/blog/">yuutan的站点</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Welcome. ようこそゆうたんのサイトへ
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/blog/" class="navbar-link">Home</a>
+    
+    
+        <a href="/blog/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=yuutan的站点&url=http://YUUtan1994.github.io/blog&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=yuutan的站点&url=http://YUUtan1994.github.io/blog&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog&title=web字体实践方案" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=web字体实践方案&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog&text=web字体实践方案" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACSElEQVR42u2cwY7CMAxE+/8/vXtaCYnYM5MtAuKXCxUtyYtUt+OxxfXzBeMCEkgggfwAyKsZf+cfr3v8bnVczfMEINYFcjZkNUkHUi2oAFYbLdcFcjRkN8nquDpfBdlTUDjrAglkM3kVGE7AddcBCeQOZLXoUhQ0m3lp4AB5HGR3Y5eJkiEaqk3fqoKAPA7STcTu/nxJtgjk10NK08gInC5Jq0TKra4akEdBrpKoHWFbPeBjk8p54wB5NGSXuCcB1YlbZ8NLIwzIkZCuoV+Zp514UCJaCmYgR0K6oF3ir8wC9eKIohvIEZBJgakSuq7x5RSmgATyrkBIjFJV7AcSyN3C+27AKUEC5FxIx5h3zPikWcQRzkDOhlSGkjIDnEDqArPcAJAjITsDwGn6UAJYgrgCA8gxkOoBrkxWZcA6Rr/lqgE5BrKbzEmkOlBV8JSiGMiRkI5x5AgKt/AeNYwCORLSMZB2m+4SUSy7WYAcA5k0HCUPcCewZLACORJSJVA7jUtO8hY3eQI5BnJHTKgmJle8yCIBkKMhlbBwBLEqwCsTwu6wAvJoSFX0cQxRp1iVNjADCWRq3NsiwUzwbFcNyOMhE2PAaXByC06OyQXkTEg1HFHrFuK7+ezGYyCPh1Q3cmLSK/O+Ei5WUR7IUZCJMZU83FXziTJSgZwNqZIrpxk0KcRbhgSQQG6YpW4DSSKMgQQy+uGV/VGMKqpahhWQIyGdBMwVGpWwUE3H/xK9QB4F6SZiSrCq4EiSNyDnQn7yABJIIIF84/gFrKFWBHJghw0AAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    
+    
+
+
+<div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">web字体实践方案</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <span>2019-05-22</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=web字体实践方案&url=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=web字体实践方案&url=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/&title=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=yuutan的站点&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog/2019/05/22/yuque/web字体实践方案/&text=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACSElEQVR42u2cwY7CMAxE+/8/vXtaCYnYM5MtAuKXCxUtyYtUt+OxxfXzBeMCEkgggfwAyKsZf+cfr3v8bnVczfMEINYFcjZkNUkHUi2oAFYbLdcFcjRkN8nquDpfBdlTUDjrAglkM3kVGE7AddcBCeQOZLXoUhQ0m3lp4AB5HGR3Y5eJkiEaqk3fqoKAPA7STcTu/nxJtgjk10NK08gInC5Jq0TKra4akEdBrpKoHWFbPeBjk8p54wB5NGSXuCcB1YlbZ8NLIwzIkZCuoV+Zp514UCJaCmYgR0K6oF3ir8wC9eKIohvIEZBJgakSuq7x5RSmgATyrkBIjFJV7AcSyN3C+27AKUEC5FxIx5h3zPikWcQRzkDOhlSGkjIDnEDqArPcAJAjITsDwGn6UAJYgrgCA8gxkOoBrkxWZcA6Rr/lqgE5BrKbzEmkOlBV8JSiGMiRkI5x5AgKt/AeNYwCORLSMZB2m+4SUSy7WYAcA5k0HCUPcCewZLACORJSJVA7jUtO8hY3eQI5BnJHTKgmJle8yCIBkKMhlbBwBLEqwCsTwu6wAvJoSFX0cQxRp1iVNjADCWRq3NsiwUzwbFcNyOMhE2PAaXByC06OyQXkTEg1HFHrFuK7+ezGYyCPh1Q3cmLSK/O+Ei5WUR7IUZCJMZU83FXziTJSgZwNqZIrpxk0KcRbhgSQQG6YpW4DSSKMgQQy+uGV/VGMKqpahhWQIyGdBMwVGpWwUE3H/xK9QB4F6SZiSrCq4EiSNyDnQn7yABJIIIF84/gFrKFWBHJghw0AAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                            <div id="post-toc">
+                                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小程序如何使用"><span class="post-toc-number">1.</span> <span class="post-toc-text">小程序如何使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字体图标有什么好处"><span class="post-toc-number">2.</span> <span class="post-toc-text">字体图标有什么好处</span></a></li></ol>
+                            </div>
+                        
+                    
+                    <article id="post-content">
+                        <p><strong>Web字体是一种CSS特性，允许您指定在访问时随您的网站一起下载的字体文件，这意味着任何支持Web字体的浏览器都可以使用您指定的字体。</strong><br><strong>引入方法很简单，在css文件中声明@font-face属性即可：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  font-family："myFont";</span><br><span class="line">  <span class="selector-tag">src</span>：<span class="selector-tag">url</span>("<span class="selector-tag">myFont</span><span class="selector-class">.ttf</span>");</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>目前主流的web字体格式有：woff、tff、otf、eot和svg等</strong>，但是浏览器支持情况不一，因此需要多种字体格式以获得更好跨环境支持，最好的方法就是在css声明多个字体源。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/241091/1558599230907-e7e53925-1f2f-43f5-b12d-63fbbba23216.png#align=left&amp;display=inline&amp;height=372&amp;originHeight=372&amp;originWidth=680&amp;size=0&amp;status=done&amp;width=680" alt><br>（浏览器支持情况，打叉的都是支持）</p>
+<p>关于各种字体格式说明，可以在 <a href="https://zhuanlan.zhihu.com/p/28179203" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28179203</a>   这篇文章查阅。<br>从这篇文章我们可以得出，woff才是未来web字体的主流，优点有更好的编码压缩（体积比ttf减少40%），加载速度更快，保护版权等<br><a name="LZJfD"></a></p>
+<h2 id="小程序如何使用"><a href="#小程序如何使用" class="headerlink" title="小程序如何使用"></a>小程序如何使用</h2><p>小程序也支持web字体图标，下面介绍它的引入方法<br>亲测小程序不能引入本地路径的字体源，否则会报错；<br>一种可用的方法是将字体文件转成base64：<br>感觉这样引入也挺麻烦的，复制粘贴的时候也会有一定出错的几率。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"iconfont"</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'iconfont.eot?t=1558510965326'</span>); <span class="comment">/* IE9 */</span></span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'iconfont.eot?t=1558510965326#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>), <span class="comment">/* IE6-IE8 */</span></span><br><span class="line">  <span class="built_in">url</span>(<span class="string">'data:application/x-font-woff2;charset=utf-8;base64,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'</span>) <span class="built_in">format</span>(<span class="string">'woff2'</span>),</span><br><span class="line">  <span class="built_in">url</span>(<span class="string">'iconfont.woff?t=1558510965326'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),</span><br><span class="line">  <span class="built_in">url</span>(<span class="string">'iconfont.ttf?t=1558510965326'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>), <span class="comment">/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */</span></span><br><span class="line">  <span class="built_in">url</span>(<span class="string">'iconfont.svg?t=1558510965326#iconfont'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>); <span class="comment">/* iOS 4.1- */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>推荐使用阿里巴巴字体图标库，字体文件是挂在阿里cdn上，可以直接在协作网址上复制代码（推荐使用Unicode方法）：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/241091/1558599259430-5564a50b-c54c-4049-a87f-034f6a18f088.png#align=left&amp;display=inline&amp;height=832&amp;name=image.png&amp;originHeight=832&amp;originWidth=1236&amp;size=155763&amp;status=done&amp;width=1236" alt="image.png"><br>而且在上面可以生成更新代码，通过文件后缀哈希值区分，不必担心缓存问题。<br>一开始我担心小程序会不会不能访问第三方域名的文件，但是实测是ok的，这和background-image属性使用外部链接方式是一致的，不必担心这个问题。</p>
+<p>接下来就是使用这些图标了，我的使用方法是先声明公共class的font-family，再在每一个字体class的伪元素声明它自身的content内容，内容即是在下载到本地的css上说明的编码，这里会比较麻烦，但好处就是你可以定义自己的class名，使其更好的语义化；</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.iconfont</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"iconfont"</span> <span class="meta">!important</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">font-style</span>: normal;</span><br><span class="line">  <span class="attribute">-webkit-font-smoothing</span>: antialiased;</span><br><span class="line">  <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-gengduo</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">"\e636"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.icon-huilv</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">"\e61e"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>限制：小程序不支持多色图标</strong><br>小程序不支持<i>标签，所以在正常浏览器环境也可以这么使用：<br>// 内容为字体编码<br><i class="iconfont">3</i><br><a name="kBCwC"></a></i></p>
+<h2 id="字体图标有什么好处"><a href="#字体图标有什么好处" class="headerlink" title="字体图标有什么好处"></a>字体图标有什么好处</h2><p>这里先说字体图标的好处，再说一下阿里iconfont字体图标库的使用上的好处&amp;需注意的问题。<br>1、web字体相对于png来说，最大的好处就是减少请求体积，特别是对移动端这种对性能优化要求比较大的情况来说，是占了绝大部分优势的。除优化性能，也减少了带宽。<br>2、web字体解压读取更快，可以在同一图标中设置不同的颜色，若是png则需要两张图片及以上。<br>3、字体图标为矢量图标，精度更高，放大多少也不会失真，png则可能会有锯齿问题。</p>
+<p>现在iconfont也支持多色图标了，但是具体支持多少种颜色目前没有详细说明<br>关于iconfont的使用特点，我觉得最大的一点是方便了设计师和开发者的协作沟通，两方只需在同一平台上同步内容，减少im工具上的沟通，开发者若追溯也只用在git历史提交上查看，不必维护多个文件。<br>iconfont也注重版权问题，只要设计师声明了版权，若发现有第三方盗用即可合理维权。但相应的我们要警惕在iconfont上商用其他图标带来的问题。<br>还有就是现在推荐的iconfont登录账号是github，微博据说不断抽风，大家可根据自己需要使用。</p>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+        var dateUpdate = Date.parse("2020-01-26");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2019-05-22T06:24:36.000Z" itemprop="datePublished">2019-05-22</time>
+
+    , Updated at&nbsp;<time datetime="2020-01-26T14:18:36.739Z" itemprop="dateModified">2020-01-26</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                
+<div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/blog/2019/09/24/yuque/记一次浏览器自动填充保存后密码问题/">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">记一次浏览器自动填充保存后密码问题</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/blog/2019/05/05/yuque/hello world/">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">hello world</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://YUUtan1994.github.io/blog">yuutan的站点</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+        
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
+</footer>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightSince = 2019;
+        if (copyrightSince === copyrightNow) {
+            copyrightContent.textContent = copyrightNow
+        } else {
+            copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow
+        }
+    
+
+
+
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
+</html>

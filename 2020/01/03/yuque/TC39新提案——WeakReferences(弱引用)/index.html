@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html >
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>TC39新提案——WeakReferences(弱引用) | yuutan的站点</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/blog/img/favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content="目前提案进度：stage 3。
+">
+
+<!-- Keywords -->
+<meta name="keywords" content>
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/blog/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/blog/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    
+        <link rel="stylesheet" href="/blog/css/highlight/github.min.css">
+    
+
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="yuutan的站点">
+<meta name="msapplication-starturl" content="http://YUUtan1994.github.io/blog">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="yuutan的站点">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="TC39新提案——WeakReferences(弱引用) | yuutan的站点">
+<meta property="og:site_name" content="yuutan的站点">
+
+
+
+<meta property="og:url" content="http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/">
+<meta property="og:image" content="http://YUUtan1994.github.io/blog/img/favicon.ico">
+
+<meta property="og:description" content="目前提案进度：stage 3。
+">
+
+<meta name="twitter:card" content="summary">
+
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2020-01-03T09:49:21.000Z">
+    <meta property="article:modified_time" content="2020-01-03T09:49:21.000Z">
+    <meta property="article:author" content="Vincent Yuu">
+    <meta property="og:article:tag" content> 
+
+
+
+
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://YUUtan1994.github.io/blog/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/">
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/",
+    "@type": "BlogPosting",
+    "logo": "http://YUUtan1994.github.io/blog/img/favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/"
+    },
+    "headline": "TC39新提案——WeakReferences(弱引用) | yuutan的站点",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+    },
+    
+    "datePublished": "2020-01-03T09:49:21.000Z",
+    "dateModified": "2020-01-26T14:18:36.735Z",
+    "author": {
+        "@type": "Person",
+        "name": "Vincent Yuu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/avatar.jpeg"
+        },
+        "description": "Welcome. ようこそゆうたんのサイトへ"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "yuutan的站点",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://YUUtan1994.github.io/blog/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "目前提案进度：stage 3。
+"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/blog/">yuutan的站点</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Welcome. ようこそゆうたんのサイトへ
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/blog/" class="navbar-link">Home</a>
+    
+    
+        <a href="/blog/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=yuutan的站点&url=http://YUUtan1994.github.io/blog&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=yuutan的站点&url=http://YUUtan1994.github.io/blog&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog&title=TC39新提案——WeakReferences(弱引用)" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=TC39新提案——WeakReferences(弱引用)&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog&text=TC39新提案——WeakReferences(弱引用)" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAAAAAAYplnuAAACp0lEQVR42u3c3U4CMRRFYd7/pfUWSXv22h0kIbPmBiUDfk0sp+dHHz9feD1EixYt+obox3A93/P6+HwPeX513x8QcYgWDdHLX/oFevX1aoG791z9jNcFjQ7Rogs03VwTnmzGaSNOrxct+j/RJEjsQFPAEi360+hmISTIpNeLFn0FvXvD6VCzW9DufaeFvPWUJ/r26Cmh/OTj27Jx0bdGk+STfE8WTRPey1VT0bdGpx9KCixT0WZ10GoWLVp0i6ZFQrqYdhNugVeDi+jbopvkFG2WIQkmiUUVXESL3nxOtxtsKi42DVS0+XafHqJFD+h0GDpdxNRkSgMEy9eJFg3RdBPSJlD6fmqI4mKNaNFlEpCaQ+QANAaKUPQcG0WiRZfNTzr0RzbVdKhKCXFdYRItujiMpw13cqiiwUa06BZNhlTpPTT40HtFi76CJoUTWkgkg+AkMd4GF9GiBzQNILSQ0zSS6BCLaNEtmm44UiQ/2dypsCNaNEVPH+htE5QWJ6fkdvSIFg3RdNAkHXJIgJkKnvH1okUD9FR0SQWWNFh4HERoRBQtGhRrUoOINoPIpiaHKNGiW/TphqSDJyQZTkNcokU3aBII0nBg2qik4EMGZkWLJuimGTkdlEghskmacTYuWvQQXNIgVDPQSoJGKhKhA5No0SC40GIMKZyTA1YajBEtukXThg5pEDULpwOHokWfotvD/EmQuTKoKFp0i6YFQZIQkENSaqTWg1eiRYOL/oFCChgpWB0ltqJFH/4j+NR8J03OqfCDBwdEi4Zo0hBKA4VN07MZUhQt+hTdJppNEpuKM+kSLfrdaDr0fRKoaONTtOh3o/EgyQBNz6eFihbdoKcAQZr8pLDTBLOlQbRoiG6GAFOCmgrybdNUtOgW/U2XaNGiRd8I/QubDtooxxVaQgAAAABJRU5ErkJggg==" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    
+    
+
+
+<div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">TC39新提案——WeakReferences(弱引用)</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <span>2020-01-03</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=TC39新提案——WeakReferences(弱引用)&url=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=TC39新提案——WeakReferences(弱引用)&url=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/&title=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=yuutan的站点&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog/2020/01/03/yuque/TC39新提案——WeakReferences(弱引用)/&text=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAAAAAAYplnuAAACp0lEQVR42u3c3U4CMRRFYd7/pfUWSXv22h0kIbPmBiUDfk0sp+dHHz9feD1EixYt+obox3A93/P6+HwPeX513x8QcYgWDdHLX/oFevX1aoG791z9jNcFjQ7Rogs03VwTnmzGaSNOrxct+j/RJEjsQFPAEi360+hmISTIpNeLFn0FvXvD6VCzW9DufaeFvPWUJ/r26Cmh/OTj27Jx0bdGk+STfE8WTRPey1VT0bdGpx9KCixT0WZ10GoWLVp0i6ZFQrqYdhNugVeDi+jbopvkFG2WIQkmiUUVXESL3nxOtxtsKi42DVS0+XafHqJFD+h0GDpdxNRkSgMEy9eJFg3RdBPSJlD6fmqI4mKNaNFlEpCaQ+QANAaKUPQcG0WiRZfNTzr0RzbVdKhKCXFdYRItujiMpw13cqiiwUa06BZNhlTpPTT40HtFi76CJoUTWkgkg+AkMd4GF9GiBzQNILSQ0zSS6BCLaNEtmm44UiQ/2dypsCNaNEVPH+htE5QWJ6fkdvSIFg3RdNAkHXJIgJkKnvH1okUD9FR0SQWWNFh4HERoRBQtGhRrUoOINoPIpiaHKNGiW/TphqSDJyQZTkNcokU3aBII0nBg2qik4EMGZkWLJuimGTkdlEghskmacTYuWvQQXNIgVDPQSoJGKhKhA5No0SC40GIMKZyTA1YajBEtukXThg5pEDULpwOHokWfotvD/EmQuTKoKFp0i6YFQZIQkENSaqTWg1eiRYOL/oFCChgpWB0ltqJFH/4j+NR8J03OqfCDBwdEi4Zo0hBKA4VN07MZUhQt+hTdJppNEpuKM+kSLfrdaDr0fRKoaONTtOh3o/EgyQBNz6eFihbdoKcAQZr8pLDTBLOlQbRoiG6GAFOCmgrybdNUtOgW/U2XaNGiRd8I/QubDtooxxVaQgAAAABJRU5ErkJggg==" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                            <div id="post-toc">
+                                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Motivation"><span class="post-toc-number">1.</span> <span class="post-toc-text">Motivation</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Usage"><span class="post-toc-number">2.</span> <span class="post-toc-text">Usage</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WeakRef"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">WeakRef</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Finalizers"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Finalizers</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+                            </div>
+                        
+                    
+                    <article id="post-content">
+                        <p>目前提案进度：stage 3。<br><a name="6y8Z6"></a></p>
+<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>弱引用的主要用途是实现保存大型对象的缓存或映射，在这种情况下，不希望仅因为大型对象出现在缓存或映射中而使其保持活动状态。</p>
+<p>一般来说，JavaScript中对象的引用都是强引用，只要保留着对象的引用，它就不会被垃圾回收；<br>在ES6标准中，出现了WeakMap、WeakSet的数据结构，可以将对象弱引用，以WeakMap为例，它的特点是这样的：</p>
+<ul>
+<li>只接受对象作为键名（null除外）；<br></li>
+<li>键名所引用的对象都是弱引用，垃圾回收机制不会考虑WeakMap中的引用；<br></li>
+</ul>
+<p>但是WeakMap不是真正意义上的弱引用：只要键存在，他就能强制引用；也就是对键名的弱引用；</p>
+<p>下面是提案中的示例：<br>例如，如果您有许多大的二进制图像对象（例如ArrayBuffers），则可能希望将名称与每个图像相关联。现有的数据结构只是不执行此处所需的操作：</p>
+<p>如果使用map结构将名称映射到图像，或将图像映射到名称，则图像对象将保持活动状态，因为它们在映射中显示为值或键。<br>WeakMap也不适用于此目的：它们的弱引用作用于key上，但是在这种情况下，我们需要一个结构，是对值的弱引用。<br><a name="4Uh2Q"></a></p>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p><a name="L8xpP"></a></p>
+<h2 id="WeakRef"><a href="#WeakRef" class="headerlink" title="WeakRef"></a>WeakRef</h2><p>WeakRef 是一个更高级的 API，它提供了<strong>真正的弱引用</strong>，并在对象的生命周期中插入了一个窗口。</p>
+<p>针对上面的示例，我们可以使用weakRef对象来进行对图像数据的缓存；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeWeakCached</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> cache = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> ref = cache.get(key);</span><br><span class="line">    <span class="keyword">if</span> (ref) &#123;</span><br><span class="line">      <span class="keyword">const</span> cached = ref.deref();</span><br><span class="line">      <span class="keyword">if</span> (cached !== <span class="literal">undefined</span>) <span class="keyword">return</span> cached;  <span class="comment">// 如果缓存存在，则返回缓存内容；</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> fresh = f(key);</span><br><span class="line">    cache.set(key, <span class="keyword">new</span> WeakRef(fresh)); <span class="comment">// 将生成的图像数据作为弱引用对象，保存在缓存对象中</span></span><br><span class="line">    <span class="keyword">return</span> fresh;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getImageCached = makeWeakCached(getImage);</span><br></pre></td></tr></table></figure></p>
+<p>以上代码仍然会有一个问题：weakRef对象虽然会在GC阶段回收，map中指向weakRef的键值却会不断生成，没有被回收，那么在遍历map的时候速度就会变慢，这时候可以用finalizer(终结器)来帮助清除键值。<br><a name="NCAwy"></a></p>
+<h2 id="Finalizers"><a href="#Finalizers" class="headerlink" title="Finalizers"></a>Finalizers</h2><p>Finalizer是对象被回收之后的回调执行器。</p>
+<blockquote>
+<p>Finalizers比较tricky，最好避免使用它；比如说，finalizer在关闭浏览器或者进程退出的时候不会被调用；它们对于GC来说不能起到帮助的作用，相反还会干扰GC的计数：GC在经过一定数量分配后，会决定有必要时的堆扫描，而注册finalizer对象总是代表着GC看不见的分配量，这会造成实际上资源使用量会高于GC计算的使用量。(<a href="https://github.com/tc39/proposal-weakrefs#another-note-of-caution" target="_blank" rel="noopener">https://github.com/tc39/proposal-weakrefs#another-note-of-caution</a>)</p>
+</blockquote>
+<p>在此，我们注册一个回调，以便在图像对象被垃圾回收时从缓存中删除键：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cache = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> finalizationGroup = <span class="keyword">new</span> FinalizationGroup(<span class="function">(<span class="params">iterator</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> name <span class="keyword">of</span> iterator) &#123;</span><br><span class="line">    <span class="keyword">const</span> ref = cache.get(name);</span><br><span class="line">    <span class="keyword">if</span> (ref !== <span class="literal">undefined</span> &amp;&amp; ref.deref() === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      cache.delete(name);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getImageCached</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ref = cache.get(name); </span><br><span class="line">  <span class="keyword">if</span> (ref !== <span class="literal">undefined</span>) &#123; </span><br><span class="line">    <span class="keyword">const</span> deref = ref.deref();</span><br><span class="line">    <span class="keyword">if</span> (deref !== <span class="literal">undefined</span>) <span class="keyword">return</span> deref;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> image = performExpensiveOperation(name); </span><br><span class="line">  <span class="keyword">const</span> wr = <span class="keyword">new</span> WeakRef(image); </span><br><span class="line">  cache.set(name, wr); </span><br><span class="line">  finalizationGroup.register(image, name); <span class="comment">// 注册一个终结器</span></span><br><span class="line">  <span class="keyword">return</span> image; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不要在终结器的代码块中放置重要的逻辑。因为，无法预测什么时候，甚至不确定是否会调用给定的终结器。最好将 WeakRef 和终结器视为<strong>渐进式增强</strong>：如果自定义终结器代码运行了，那最好；但是，在它没有运行的情况下，程序应该仍然可以正常运行。<br>WeakRef 和终结器可以帮助我们节省内存，并且在被当一种作渐进式增强的手段少量使用时，效果最佳。由于它们是高级用户特性，我们期望尽量只在框架或库中使用它们。<br></p>
+<p><a name="0uTAO"></a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>WeakRef结构比WeakMap带来更高级的使用，它是真正意义上的弱引用，它可以在保存大数据的时候提供即使有引用也会被资源回收的功能，防止了内存溢出和提供更优秀的性能；Finalizer是对象被GC之后的回调，但是它不稳定且会阻碍GC的正常机制，但是它可以定位到内部内存泄漏，和清除引用weakRef的key值等等。</p>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+        var dateUpdate = Date.parse("2020-01-26");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2020-01-03T09:49:21.000Z" itemprop="datePublished">2020-01-03</time>
+
+    , Updated at&nbsp;<time datetime="2020-01-26T14:18:36.735Z" itemprop="dateModified">2020-01-26</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                
+<div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/blog/2020/01/25/yuque/TypeScript初学笔记/">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">TypeScript初学笔记</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/blog/2019/12/17/yuque/写给自己看的git笔记/">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">写给自己看的git笔记</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://YUUtan1994.github.io/blog">yuutan的站点</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+        
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
+</footer>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightSince = 2019;
+        if (copyrightSince === copyrightNow) {
+            copyrightContent.textContent = copyrightNow
+        } else {
+            copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow
+        }
+    
+
+
+
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
+</html>

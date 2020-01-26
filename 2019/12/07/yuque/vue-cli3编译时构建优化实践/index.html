@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+<html >
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>vue-cli3编译时构建优化实践 | yuutan的站点</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/blog/img/favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content="最近研究并借鉴了一下网上对webpack优化的一些措施，也对自己所负责的项目进行了优化。项目背景：单页spa应用，大多数运行在electron端上，大概有150+页面，曾经从vue-cli2移植到vue-cli3，代码体...">
+
+<!-- Keywords -->
+<meta name="keywords" content>
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/blog/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/blog/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    
+        <link rel="stylesheet" href="/blog/css/highlight/github.min.css">
+    
+
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="yuutan的站点">
+<meta name="msapplication-starturl" content="http://YUUtan1994.github.io/blog">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="yuutan的站点">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="vue-cli3编译时构建优化实践 | yuutan的站点">
+<meta property="og:site_name" content="yuutan的站点">
+
+
+
+<meta property="og:url" content="http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/">
+<meta property="og:image" content="http://YUUtan1994.github.io/blog/img/favicon.ico">
+
+<meta property="og:description" content="最近研究并借鉴了一下网上对webpack优化的一些措施，也对自己所负责的项目进行了优化。项目背景：单页spa应用，大多数运行在electron端上，大概有150+页面，曾经从vue-cli2移植到vue-cli3，代码体...">
+
+<meta name="twitter:card" content="summary">
+
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-12-07T14:20:27.000Z">
+    <meta property="article:modified_time" content="2019-12-07T14:20:27.000Z">
+    <meta property="article:author" content="Vincent Yuu">
+    <meta property="og:article:tag" content> 
+
+
+
+
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://YUUtan1994.github.io/blog/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/">
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/",
+    "@type": "BlogPosting",
+    "logo": "http://YUUtan1994.github.io/blog/img/favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/"
+    },
+    "headline": "vue-cli3编译时构建优化实践 | yuutan的站点",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+    },
+    
+    "datePublished": "2019-12-07T14:20:27.000Z",
+    "dateModified": "2020-01-26T14:18:36.739Z",
+    "author": {
+        "@type": "Person",
+        "name": "Vincent Yuu",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/avatar.jpeg"
+        },
+        "description": "Welcome. ようこそゆうたんのサイトへ"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "yuutan的站点",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://YUUtan1994.github.io/blog/img/favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://YUUtan1994.github.io/blog/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "最近研究并借鉴了一下网上对webpack优化的一些措施，也对自己所负责的项目进行了优化。项目背景：单页spa应用，大多数运行在electron端上，大概有150+页面，曾经从vue-cli2移植到vue-cli3，代码体..."
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/blog/">yuutan的站点</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Welcome. ようこそゆうたんのサイトへ
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/blog/" class="navbar-link">Home</a>
+    
+    
+        <a href="/blog/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=yuutan的站点&url=http://YUUtan1994.github.io/blog&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=yuutan的站点&url=http://YUUtan1994.github.io/blog&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog&title=vue-cli3编译时构建优化实践" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=vue-cli3编译时构建优化实践&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog&text=vue-cli3编译时构建优化实践" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAAAAAAYplnuAAACt0lEQVR42u3cy07cUBBFUf//TycTJki+5+wqN0jI2xOSprEXKKVbr3D9+4PXJVq0aNEvRF/h+vYFX38nH+mf02t3DtGiKfr2H31Af7vRAba5T3OIFj1B3wXGXbCmryHvpd/MrUO06B9C0wPiLlDTa6JF/xb6dHCkQyElVSThEi36KTo98JQIteA9vY/8kB5leaJfj04F5W9+/Fg1LvrV6FEDMBw8JOlKgf1jXVPRr0OnG58+35ovp2bO6ZntgBEteoImjcdRUnNoyqSi+FQcixa9QV/gOh0c9DA5faN02CRa9ATdhpTtAS1xSoGZEqdaBIgWXdCbpCk1YcZFKwhi0aIpOgUWCcDWOG/Dz9TcFC16iyaHzZMBZlvoag170aIpetJQR8GybO6Qho1o0QR9ugFZSCFBSBZa0pB/VLmIFj0YDNHlbpJckWRqPfwU/Xo0XSJpCT5t+qRDrRYLokUP0ZNBURzoLJa2UPEsWjRA06AjhcCkOdMKjdqsES36gCaFKW0ckiUtmiDVhEm06MEckRadT4b3KZBX0y3RohfBRg6EluDTxkxs1ogWDRqQFIgG7xf7T5VtACta9CfQbemEBFMqdjc/KNGinyRMbSA/TfTJ8gsuLESLhuj25pQEkaUUunCbDh7RojfotjiFG4XDpSwyIBUteosmCRNpsreCmS66xC0E0aLBL9rZDIZa43G0BJua/KJFA3RLmOjN21C/HWBoaCpaNNxhag8jQUeXXlph8WhiK1o0uAi+vdaaOrgZKlo0DMQUEJOGTbvftGkTB/qiRcO9vGlwpabNKZDbfY5BK1r0AE0XSqZFLB0mjZrqokU/QLdDhDycBB9aihEt+gPozSLL5OBqS+eiRW/Rk4KTBGIb9tPAXmV5ol+PJkUoGebHohQUsXVoJFo0QP+lS7Ro0aJfhP4PHP4p54nc67EAAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    
+    
+
+
+<div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">vue-cli3编译时构建优化实践</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/blog/img/avatar.jpeg" src="/blog/img/suka-lazyload.gif" alt="Vincent Yuu's Avatar">
+        <span>2019-12-07</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=vue-cli3编译时构建优化实践&url=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/&pic=http://YUUtan1994.github.io/blog/img/favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=vue-cli3编译时构建优化实践&url=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/&via=Vincent Yuu" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/&title=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=yuutan的站点&title=yuutan的站点&summary=&pics=http://YUUtan1994.github.io/blog/img/favicon.ico&url=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://YUUtan1994.github.io/blog/2019/12/07/yuque/vue-cli3编译时构建优化实践/&text=yuutan的站点" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAAAAAAYplnuAAACt0lEQVR42u3cy07cUBBFUf//TycTJki+5+wqN0jI2xOSprEXKKVbr3D9+4PXJVq0aNEvRF/h+vYFX38nH+mf02t3DtGiKfr2H31Af7vRAba5T3OIFj1B3wXGXbCmryHvpd/MrUO06B9C0wPiLlDTa6JF/xb6dHCkQyElVSThEi36KTo98JQIteA9vY/8kB5leaJfj04F5W9+/Fg1LvrV6FEDMBw8JOlKgf1jXVPRr0OnG58+35ovp2bO6ZntgBEteoImjcdRUnNoyqSi+FQcixa9QV/gOh0c9DA5faN02CRa9ATdhpTtAS1xSoGZEqdaBIgWXdCbpCk1YcZFKwhi0aIpOgUWCcDWOG/Dz9TcFC16iyaHzZMBZlvoag170aIpetJQR8GybO6Qho1o0QR9ugFZSCFBSBZa0pB/VLmIFj0YDNHlbpJckWRqPfwU/Xo0XSJpCT5t+qRDrRYLokUP0ZNBURzoLJa2UPEsWjRA06AjhcCkOdMKjdqsES36gCaFKW0ckiUtmiDVhEm06MEckRadT4b3KZBX0y3RohfBRg6EluDTxkxs1ogWDRqQFIgG7xf7T5VtACta9CfQbemEBFMqdjc/KNGinyRMbSA/TfTJ8gsuLESLhuj25pQEkaUUunCbDh7RojfotjiFG4XDpSwyIBUteosmCRNpsreCmS66xC0E0aLBL9rZDIZa43G0BJua/KJFA3RLmOjN21C/HWBoaCpaNNxhag8jQUeXXlph8WhiK1o0uAi+vdaaOrgZKlo0DMQUEJOGTbvftGkTB/qiRcO9vGlwpabNKZDbfY5BK1r0AE0XSqZFLB0mjZrqokU/QLdDhDycBB9aihEt+gPozSLL5OBqS+eiRW/Rk4KTBGIb9tPAXmV5ol+PJkUoGebHohQUsXVoJFo0QP+lS7Ro0aJfhP4PHP4p54nc67EAAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                            <div id="post-toc">
+                                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#衡量编译性能的工具"><span class="post-toc-number">1.</span> <span class="post-toc-text">衡量编译性能的工具</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#优化的方向"><span class="post-toc-number">2.</span> <span class="post-toc-text">优化的方向</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译耗时"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">编译耗时</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译体积"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">编译体积</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#具体措施"><span class="post-toc-number">3.</span> <span class="post-toc-text">具体措施</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#npm-install阶段"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">npm install阶段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#npm-ci和npm-install不同之处有："><span class="post-toc-number">3.0.1.1.</span> <span class="post-toc-text">npm-ci和npm install不同之处有：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#build阶段"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">build阶段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#打包体积优化"><span class="post-toc-number">3.0.2.1.</span> <span class="post-toc-text">打包体积优化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编译时长优化"><span class="post-toc-number">3.0.2.2.</span> <span class="post-toc-text">编译时长优化</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#并非所有非业务相关库都建议使用dllplugin"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">并非所有非业务相关库都建议使用dllplugin</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#优化结果："><span class="post-toc-number">4.</span> <span class="post-toc-text">优化结果：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack优化方式总结："><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">webpack优化方式总结：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#最后想偷偷的吐槽"><span class="post-toc-number">5.</span> <span class="post-toc-text">最后想偷偷的吐槽</span></a></li></ol>
+                            </div>
+                        
+                    
+                    <article id="post-content">
+                        <p>最近研究并借鉴了一下网上对webpack优化的一些措施，也对自己所负责的项目进行了优化。<br>项目背景：单页spa应用，大多数运行在electron端上，大概有150+页面，曾经从vue-cli2移植到vue-cli3，代码体积parsed为5.4M左右，编译通常耗时4m~5m；</p>
+<p><a name="TXHrR"></a></p>
+<h1 id="衡量编译性能的工具"><a href="#衡量编译性能的工具" class="headerlink" title="衡量编译性能的工具"></a>衡量编译性能的工具</h1><ul>
+<li><a href="https://www.npmjs.com/package/speed-measure-webpack-plugin" target="_blank" rel="noopener">spped-measure-wepack-plugin</a>：计算每个loader和plugin编译耗时；</li>
+<li>vue GUI界面可以更直观的分析打包后每个bundle包含的modules及其大小（内置analyzer），以及其他运行命令和依赖分析等（这里重点强调analyzer，对分析打包体积更有帮助）；</li>
+<li><p>通常cli工具已经默认搭好了一系列配置，若想探究具体配置是如何，用vue inspect / npx vue-cli-service inspect 命令就可以查看具体配置了；<br><a name="KUYC2"></a></p>
+<h1 id="优化的方向"><a href="#优化的方向" class="headerlink" title="优化的方向"></a>优化的方向</h1><p><a name="cEBNT"></a></p>
+<h3 id="编译耗时"><a href="#编译耗时" class="headerlink" title="编译耗时"></a>编译耗时</h3><p>总得来说，编译增加的耗时主要在npm install 阶段、build中对chunk-vendor打包阶段（体积过大原因）、还有比较突出的babel-loader阶段。如果涉及到业务代码体积页面庞大，也需要多加重视；<br><a name="ZZhJM"></a></p>
+<h3 id="编译体积"><a href="#编译体积" class="headerlink" title="编译体积"></a>编译体积</h3><p>大体的方向就是查看analyzer每个bundle的具体情况，有多余的vendor就考虑剔除，以及压缩代码，按需引用等，<br>对于业务代码，则考虑分包+preload的形式，尽量不要阻塞页面加载；<br><a name="2IoI3"></a><br>#<br><a name="xNkIl"></a></p>
+<h1 id="具体措施"><a href="#具体措施" class="headerlink" title="具体措施"></a>具体措施</h1><p><a name="wVndS"></a></p>
+<h3 id="npm-install阶段"><a href="#npm-install阶段" class="headerlink" title="npm install阶段"></a>npm install阶段</h3><p>若是在gitlab ci则考虑用cache字段进行缓存（此部分没有进行细究），针对公司发布环境则进行了一套优化流程：检查依赖包是否有更新 + npm ci + npm i结合的形式，以此来省略npm i流程，具体流程如图：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/241091/1575892840196-448335be-8de5-4723-9e36-c394846d0bf5.png#align=left&amp;display=inline&amp;height=1340&amp;name=image.png&amp;originHeight=1381&amp;originWidth=681&amp;size=52437&amp;status=done&amp;style=none&amp;width=661" alt="image.png"><br><a name="qiLYG"></a></p>
+<h4 id="npm-ci和npm-install不同之处有："><a href="#npm-ci和npm-install不同之处有：" class="headerlink" title="npm-ci和npm install不同之处有："></a>npm-ci和npm install不同之处有：</h4></li>
+<li><p>该项目必须依赖package-lock.json</p>
+</li>
+<li>如果程序包锁中的依赖项与package.json中的依赖项不匹配，则npm ci将退出并显示错误，而不是更新程序包锁。   </li>
+<li>npm ci一次只能安装整个项目：此命令不能添加单个依赖项。  </li>
+<li>如果已经存在一个node_modules，它将在npm ci开始安装之前被自动删除。   </li>
+<li>它永远不会写入package.json或任何包锁：安装实际上是冻结的。</li>
+</ul>
+<p><code>npm install</code>，通常是用来安装依赖项：</p>
+<ul>
+<li>它将会安装 Node.js 项目所有的依赖项；</li>
+<li>如果使用 <code>^</code> 或 <code>~</code> 来匹配依赖项的版本时，则 npm 可能无法安装确切版本；</li>
+<li>利用 <code>npm install</code> 安装新依赖项时，会更新 package-lock.json。</li>
+</ul>
+<p>使用 <code>npm ci</code>，会发生：</p>
+<ul>
+<li>将会删除项目中的 <code>node_modules</code> 文件夹；</li>
+<li>会依照项目中的 <code>package.json</code> 来安装确切版本的依赖项；</li>
+<li><p>不像 <code>npm install</code>，<code>npm ci</code> 不会修改你的 <code>package-lock.json</code>。但是它确实期望你的项目中有一个 <code>package-lock.json</code> 文件 - 如果你没有这个文件，<code>npm ci</code> 将不起作用，此时必须使用 <code>npm install</code>。<br><a name="qa7BE"></a><br>###<br><a name="XuSOX"></a></p>
+<h3 id="build阶段"><a href="#build阶段" class="headerlink" title="build阶段"></a>build阶段</h3><p>webpack4 相对webpack3构建速度已经提升了很大一部分，如果这次我们要继续优化性能，则需要从其他方面入手；<br><a name="NVIGO"></a></p>
+<h4 id="打包体积优化"><a href="#打包体积优化" class="headerlink" title="打包体积优化"></a>打包体积优化</h4><p>针对代码体积，主要优化了以下几点：<br>1、分析chunk-vendors包，发现几个可以优化的依赖库</p>
+</li>
+<li><p>对部分按需引用（如element-ui等）采用按需引入的方式而非全部引用（需要babel配置）；</p>
+</li>
+<li>jQuery原本已是cdn全局引入方式，还重复安装了npm依赖，因此采用external字段将jQuery剔除到bundle中；<strong>（在这里碰到了一个坑，jq采用cdn引用后electron上运行不了，这是由于Electron 的 Renderer 端因为注入了 Node 环境，存在全局函数 <code>require</code>，导致 jQuery 内部环境判断有问题，所以只能把jq改回npm引入方式，如果想使用cdn方式而且不需要在网页里面使用 node 模块（包括 electron 模块），建议把 </strong><a href="http://electron.atom.io/docs/v0.36.8/api/browser-window/" target="_blank" rel="noopener"><strong>BrowserWindow</strong></a><strong> 的webPreferences.nodeIntegration 设置为 false。）</strong></li>
+</ul>
+<p>2、使用uglifyJSplugin/terser-webpack-plugin压缩代码；<br>3、删除线上sourcemap：是的，项目在线上仍在使用sourcemap，不单只是对体积有影响，对源码泄漏也有很大的影响，这里我把sourcemap上传到sentry之后，使用delete-sourcemap-webpack-plugin将sourcemap文件删除，这样既达到sentry跟踪源码，又防止源码泄露的效果。</p>
+<p><a name="TRkhG"></a></p>
+<h4 id="编译时长优化"><a href="#编译时长优化" class="headerlink" title="编译时长优化"></a>编译时长优化</h4><p>针对编译时长：<br>1、使用happyPack配置多进程loader编译，但是原作者声明已不再维护，vue-loader也不支持happypack，本人无论如何配置找issue都无法得到解决；webpack4官方出了一个thread-loader（开销也较大）， vue-cli3中还出了<a href="https://cli.vuejs.org/zh/config/#parallel" target="_blank" rel="noopener">https://cli.vuejs.org/zh/config/#parallel</a> 选项，默认在cpu有多于一个内核时启动babel使用thread-loader，因此优化效果并不明显，故废弃；</p>
+<p>2、对于耗时较长的loader，可使用include/include来抽离需要转义的文件路径，如exclude掉node_modules，节省转义时间；（待实践）；</p>
+<p>3、<strong><code>webpack DllPlugin</code>和<code>DllReferencePlugin</code>配置</strong><br>此措施为优化作用最明显的方法，dll为动态链接库，在webpack中可理解为对基础依赖的映射。通常第三方库不怎么更新，dllplugin作用就是将这些库抽离出来打包到单独的动态链接库中，当导入的模块存在于这个链接库中，则不会再次打包，而是从动态库中获取，从而节省这些库的编译时间，也相当于预编译；<br>首先我们先创建webpack.dll.conf.js，为创建dll的配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    <span class="comment">// 需要提取的库文件</span></span><br><span class="line">    vuebundle: [</span><br><span class="line">      <span class="string">'vue/dist/vue.esm.js'</span>,</span><br><span class="line">      <span class="string">'vue-router'</span>,</span><br><span class="line">      <span class="string">'vuex'</span>,</span><br><span class="line">      <span class="string">'vue-resource'</span></span><br><span class="line">    ],</span><br><span class="line">    utils:[</span><br><span class="line">      <span class="string">'axios'</span>,</span><br><span class="line">      <span class="string">'lodash'</span>,</span><br><span class="line">      <span class="string">'core-js'</span>,</span><br><span class="line">      <span class="string">'q'</span>,</span><br><span class="line">    ],</span><br><span class="line">    jq: [</span><br><span class="line">      <span class="string">'jquery'</span></span><br><span class="line">    ],</span><br><span class="line">    xlsx: [</span><br><span class="line">      <span class="string">'xlsx'</span></span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'public/js'</span>),</span><br><span class="line">    filename: <span class="string">'[name].dll.js'</span>,</span><br><span class="line">    <span class="comment">// vendor.dll.js中暴露出的全局变量名</span></span><br><span class="line">    <span class="comment">// 保持与 webpack.DllPlugin 中名称一致</span></span><br><span class="line">    library: <span class="string">'[name]_[hash]'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 清除之前的dll文件</span></span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="comment">// manifest.json 描述动态链接库包含了哪些内容</span></span><br><span class="line">    <span class="keyword">new</span> webpack.DllPlugin(&#123;</span><br><span class="line">      path: path.join(__dirname, <span class="string">'public/vendor'</span>, <span class="string">'[name]-manifest.json'</span>),</span><br><span class="line">      <span class="comment">// 保持与 output.library 中名称一致</span></span><br><span class="line">      name: <span class="string">'[name]_[hash]'</span>,</span><br><span class="line">      context: process.cwd()</span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们npm run dll更新动态库内容，此时生成vendor-manifest.json ，vendor.dll.js，两个文件，前者为映射文件，后者为执行文件，需要手动放入index.html中，这里使用了AddAssetHtmlPlugin直接注入；<br>最后需要在vue.config.js配置DllReferencePlugin，来声明动态链接库的引用；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">     <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">       XIAOBA_URL: <span class="built_in">JSON</span>.stringify(<span class="built_in">require</span>(<span class="string">'./xiaoba.config.js'</span>)),</span><br><span class="line">     &#125;),</span><br><span class="line">     <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">       context: process.cwd(),</span><br><span class="line">       manifest: <span class="built_in">require</span>(<span class="string">'./public/vendor/jq-manifest.json'</span>)</span><br><span class="line">     &#125;),</span><br><span class="line">     <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">       context: process.cwd(),</span><br><span class="line">       manifest: <span class="built_in">require</span>(<span class="string">'./public/vendor/utils-manifest.json'</span>)</span><br><span class="line">     &#125;),</span><br><span class="line">     <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">       context: process.cwd(),</span><br><span class="line">       manifest: <span class="built_in">require</span>(<span class="string">'./public/vendor/vuebundle-manifest.json'</span>)</span><br><span class="line">     &#125;),</span><br><span class="line">     <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">       context: process.cwd(),</span><br><span class="line">       manifest: <span class="built_in">require</span>(<span class="string">'./public/vendor/xlsx-manifest.json'</span>)</span><br><span class="line">     &#125;),</span><br><span class="line">     <span class="comment">// 将 dll 注入到 生成的 html 模板中</span></span><br><span class="line">     <span class="keyword">new</span> AddAssetHtmlPlugin(&#123;</span><br><span class="line">       <span class="comment">// dll文件位置</span></span><br><span class="line">       filepath: path.resolve(__dirname, <span class="string">'./public/js/*.dll.js'</span>),</span><br><span class="line">       <span class="comment">// dll 引用路径</span></span><br><span class="line">       publicPath: <span class="string">`<span class="subst">$&#123;publicPath&#125;</span>js`</span>,</span><br><span class="line">       <span class="comment">// dll最终输出的目录</span></span><br><span class="line">       outputPath: <span class="string">`<span class="subst">$&#123;publicPath&#125;</span>js`</span></span><br><span class="line">     &#125;)</span><br><span class="line">   ],</span><br><span class="line"> &#125;),</span><br></pre></td></tr></table></figure>
+<p><a name="aTY5C"></a></p>
+<h3 id="并非所有非业务相关库都建议使用dllplugin"><a href="#并非所有非业务相关库都建议使用dllplugin" class="headerlink" title="并非所有非业务相关库都建议使用dllplugin"></a>并非所有非业务相关库都建议使用dllplugin</h3><ul>
+<li>假设我们使用的element-ui已经如上方所说是按需引入，我们如果在dll配置声明了element-ui ，那么dll就会将这个库全部打包，而正式打包的时候也会将element按需引入，造成体积浪费；</li>
+<li>如果dll中某个库要升级，那么也要手动更新dll，增加维护成本，如果没注意，就会引用到旧的库；</li>
+</ul>
+<p>所以建议只在稳定的库中引用dllplugin，以及不依赖process.env环境的库使用plugin；</p>
+<p>4、noParse选项<br>防止 webpack 解析那些任何与给定正则表达式相匹配的文件。忽略的文件中不应该含有 <code>import</code>, <code>require</code>, <code>define</code> 的调用，或任何其他导入机制。忽略大型的 library 可以提高构建性能。<br>vue-cli已配置了vue全家桶的文件，后期可考虑优化lodash等第三方独立的库。<br><a name="Xz8Kb"></a></p>
+<p>#<br><a name="q2cDW"></a></p>
+<h1 id="优化结果："><a href="#优化结果：" class="headerlink" title="优化结果："></a>优化结果：</h1><p>体积由1.6M减少到932k（除了dll依赖）;<br>编译时长由4m20s左右，减到均为1m8s左右；<br><a name="sMdzk"></a></p>
+<h3 id="webpack优化方式总结："><a href="#webpack优化方式总结：" class="headerlink" title="webpack优化方式总结："></a>webpack优化方式总结：</h3><p>1、优化模块查找路径<br>2、剔除/精简不必要的、无用的模块<br>3、设置缓存：缓存loader的执行结果(cacheDirectory/cache-loader)<br>4、设置多线程：HappyPack/thread-loader<br>5、dllplugin预编译<br><a name="M9oCe"></a></p>
+<p>#<br><a name="2fXLG"></a></p>
+<h1 id="最后想偷偷的吐槽"><a href="#最后想偷偷的吐槽" class="headerlink" title="最后想偷偷的吐槽"></a>最后想偷偷的吐槽</h1><p>阿里的产品我一直很喜欢，语雀写文章还是挺不错的，但是不能引入外部图片这件事实在是太折磨我了，若自己上传图片，编译到自己的博客又防盗链，搞到现在都只想写纯文章，实在是不开心哦，虽然现在使用norefferer暂时解决了，鬼知道后面还会不会继续防呢，看来还是要用付费的东西一劳永逸嘤嘤嘤</p>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+        var dateUpdate = Date.parse("2020-01-26");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2019-12-07T14:20:27.000Z" itemprop="datePublished">2019-12-07</time>
+
+    , Updated at&nbsp;<time datetime="2020-01-26T14:18:36.739Z" itemprop="dateModified">2020-01-26</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                
+<div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+        <li class="page-item page-prev">
+            <a href="/blog/2019/12/17/yuque/写给自己看的git笔记/">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">写给自己看的git笔记</div>
+            </a>
+        </li>
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/blog/2019/11/07/yuque/记一次uglifyJsPlugin报错的问题/">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">记一次uglifyJsPlugin报错的问题</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://YUUtan1994.github.io/blog">yuutan的站点</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+        
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
+</footer>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightSince = 2019;
+        if (copyrightSince === copyrightNow) {
+            copyrightContent.textContent = copyrightNow
+        } else {
+            copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow
+        }
+    
+
+
+
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/blog/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
+</html>

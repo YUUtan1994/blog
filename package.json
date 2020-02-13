@@ -29,6 +29,6 @@
     "mdNameFormat": "title"
   },
   "devDependencies": {
-    "yuque-hexo": "^1.6.0"
+    "yuque-hexo": "^1.6.2"
   }
 }

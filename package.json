@@ -26,6 +26,7 @@
     "baseUrl": "https://www.yuque.com/api/v2",
     "login": "zhangwenxin-nf3ce",
     "repo": "szccsm",
+    "YUQUE_TOKEN": "KHWUXJKjkjiLYiVlvTRtRRQPLrX5M9U94eMTbyah",
     "mdNameFormat": "title"
   },
   "devDependencies": {

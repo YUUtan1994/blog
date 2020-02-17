@@ -11,6 +11,9 @@ cache:
 branches:
   only:
     - yuque-hexo
+env:
+  global:
+    - YUQUE-TOKEN: KHWUXJKjkjiLYiVlvTRtRRQPLrX5M9U94eMTbyah
 
 before_install:
   - npm install -g hexo-cli

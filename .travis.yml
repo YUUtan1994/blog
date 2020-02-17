@@ -14,6 +14,7 @@ branches:
 env:
   global:
     - YUQUE-TOKEN: KHWUXJKjkjiLYiVlvTRtRRQPLrX5M9U94eMTbyah
+    - DEBUG: common-bin
 
 before_install:
   - npm install -g hexo-cli

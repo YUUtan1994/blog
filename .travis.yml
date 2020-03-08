@@ -11,10 +11,10 @@ cache:
 branches:
   only:
     - yuque-hexo
-# env:
-#   global:
+env:
+  global:
 #     - YUQUE-TOKEN: KHWUXJKjkjiLYiVlvTRtRRQPLrX5M9U94eMTbyah
-#     - DEBUG: common-bin
+    - DEBUG: common-bin
 
 before_install:
   - npm install -g hexo-cli
